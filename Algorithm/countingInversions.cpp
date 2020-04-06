@@ -1,4 +1,5 @@
 #include <iostream> 
+#include<fstream>
 using namespace std; 
 
 int _mergeSort(int arr[], int temp[], int left, int right); 
@@ -54,8 +55,23 @@ int merge(int arr[], int temp[], int left,
 } 
 
 int main() 
-{ 
-	int arr[] = { 1, 20, 6, 4, 5 }; 
+{ 	int x;
+	ifstream inFile;
+	inFile.open("IntegerArray.txt");
+	if (!inFile) {
+        cout << "Unable to open file";
+        exit(1); // terminate with error
+    }
+    int i = 0;
+	int arr[100000];
+    while (inFile >> x) {
+        arr[i] = x;
+		i++;
+    }
+    
+    inFile.close();
+ 
+	//int arr[] = { 1, 20, 6, 4, 5 }; 
 	int n = sizeof(arr) / sizeof(arr[0]); 
 	int ans = mergeSort(arr, n); 
 	cout  << ans <<endl; 
